@@ -1,0 +1,19 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  maxInstances: 1
+# To deploy this backend, you'll need to grant "Secret Manager Secret Accessor"
+# role to the App Hosting service account.
+# gcloud projects add-iam-policy-binding <project-id> \
+#   --member=serviceAccount:service-<project-number>@gcp-sa-apphosting.iam.gserviceaccount.com \
+#   --role=roles/secretmanager.secretAccessor
+secretEnvironmentVariables:
+  - key: GEMINI_API_KEY
+    # You can create a secret by running:
+    # gcloud secrets create GEMINI_API_KEY --replication-policy="automatic"
+    # You can add a value to the secret by running:
+    # echo "your-api-key-here" | gcloud secrets versions add GEMINI_API_KEY --data-file=-
+    secret: GEMINI_API_KEY
